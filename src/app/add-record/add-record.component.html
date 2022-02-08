@@ -1,0 +1,79 @@
+<div class="container-fluid">
+    <div class="form-width-500">
+        <form [formGroup]="addForm">
+            <div class="row">
+                <div class="sm-col-6">
+                    <label for="name">Name: </label>
+                </div>
+                <div class="sm-col-6">
+                    <input id="name" type="text" formControlName="name" class="form-control">
+                </div>
+            </div>
+            <div class="row">
+                <div class="sm-col-6">
+                    <label for="address">Address: </label>
+                </div>
+                <div class="sm-col-6">
+                    <textarea id="address" formControlName="address" class="form-control"></textarea>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="sm-col-6">
+                    <label for="dob">Date Of Birth: </label>
+                </div>
+                <div class="sm-col-6">
+                    <input id="dob" type="date" formControlName="dob" class="form-control">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="sm-col-6">
+                    <label for="role">Role: </label>
+                </div>
+                <div class="sm-col-6">
+                    <select id="role" formControlName="role" class="form-control">
+                        <option>admin</option>
+                        <option>manager</option>
+                        <option>HR</option>
+                        <option>software engineer</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="sm-col-6">
+                    <label for="role">Phone: </label>
+                </div>
+                <div class="sm-col-6">
+                    <div formArrayName="phones">
+                        <button type="button" (click)="addphones()" type="button">+ Add another phone</button>
+
+                        <div *ngFor="let phone of phones.controls; let i=index">
+                            <!-- The repeated alias template -->
+                            <label for="phone-{{ i }}">phones:</label>
+                            <input id="phone-{{ i }}" type="text" [formControlName]="i" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="sm-col-6">
+                    <label for="gender">Gender: </label>
+                </div>
+                <div class="sm-col-6">
+                    <label>
+                        <input type="radio" value="Male" formControlName="gender" class="form-radio">
+                        <span>male</span>
+                    </label>
+                    <label>
+                        <input type="radio" value="Female" formControlName="gender" class="form-radio">
+                        <span>female</span>
+                    </label>
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary" [disabled]="!addForm.valid" (click)="onSubmit()">Submit</button>
+        </form>
+    </div>
+</div>

@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'interview-angular';
+  currentTab = 'add-record';
+
+  changeTab(tabName: string) {
+    this.currentTab = tabName;
+  }
+
 }
